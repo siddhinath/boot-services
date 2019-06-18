@@ -1,0 +1,16 @@
+[Unit]
+Description=Apache Kafka server (broker-0)
+Documentation=http://kafka.apache.org/documentation.html
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target kafka-zookeeper.service
+
+[Service]
+Type=simple
+User=dataeaze
+Group=dataeaze
+Environment=JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+ExecStart=/bin/bash /home/dataeaze/Tools/kafka_2.12-2.2.0/bin/kafka-server-start.sh /home/dataeaze/Tools/kafka_2.12-2.2.0/config/server.properties
+ExecStop=/bin/bash /home/dataeaze/Tools/kafka_2.12-2.2.0/bin/kafka-server-stop.sh
+
+[Install]
+WantedBy=multi-user.target
